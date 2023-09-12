@@ -6,13 +6,33 @@ public class LaunchPad : MonoBehaviour
 {
     [SerializeField] private float launchForce = 1f;
 
+    private bool canLaunch = true;
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && canLaunch)
         {
             Debug.Log("Trigger LaunchPad");
             Rigidbody2D playerRb = collision.GetComponent<Rigidbody2D>();
             playerRb.AddForce(Vector2.up * launchForce);
+            StartCoroutine(Delay());
         }
     }
+
+    private IEnumerator Delay()
+    {
+        anim.SetTrigger("Launch");
+        canLaunch = false;
+        yield return new WaitForSeconds(1);
+        anim.SetTrigger("Return");
+        canLaunch = true;
+    }
+
+
 }
