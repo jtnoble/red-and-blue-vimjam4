@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetLevel"",
+                    ""type"": ""Value"",
+                    ""id"": ""97bd8759-d1b0-48f5-aa29-563d1588d165"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -152,6 +161,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""LoadCheckpoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ac5c984-961d-4112-a562-f302eceaa970"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +184,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         m_Movement_SaveCheckpoint = m_Movement.FindAction("SaveCheckpoint", throwIfNotFound: true);
         m_Movement_LoadCheckpoint = m_Movement.FindAction("LoadCheckpoint", throwIfNotFound: true);
+        m_Movement_ResetLevel = m_Movement.FindAction("ResetLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +248,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Jump;
     private readonly InputAction m_Movement_SaveCheckpoint;
     private readonly InputAction m_Movement_LoadCheckpoint;
+    private readonly InputAction m_Movement_ResetLevel;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -235,6 +257,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Movement_Jump;
         public InputAction @SaveCheckpoint => m_Wrapper.m_Movement_SaveCheckpoint;
         public InputAction @LoadCheckpoint => m_Wrapper.m_Movement_LoadCheckpoint;
+        public InputAction @ResetLevel => m_Wrapper.m_Movement_ResetLevel;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,6 +279,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LoadCheckpoint.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnLoadCheckpoint;
                 @LoadCheckpoint.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnLoadCheckpoint;
                 @LoadCheckpoint.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnLoadCheckpoint;
+                @ResetLevel.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
+                @ResetLevel.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
+                @ResetLevel.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -272,6 +298,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @LoadCheckpoint.started += instance.OnLoadCheckpoint;
                 @LoadCheckpoint.performed += instance.OnLoadCheckpoint;
                 @LoadCheckpoint.canceled += instance.OnLoadCheckpoint;
+                @ResetLevel.started += instance.OnResetLevel;
+                @ResetLevel.performed += instance.OnResetLevel;
+                @ResetLevel.canceled += instance.OnResetLevel;
             }
         }
     }
@@ -282,5 +311,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSaveCheckpoint(InputAction.CallbackContext context);
         void OnLoadCheckpoint(InputAction.CallbackContext context);
+        void OnResetLevel(InputAction.CallbackContext context);
     }
 }

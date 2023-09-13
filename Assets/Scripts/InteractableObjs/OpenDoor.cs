@@ -13,7 +13,7 @@ public class OpenDoor : MonoBehaviour
     [SerializeField] private float openTime = 0f;
     [SerializeField] private float closeTime = 0f;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isOpen) Open();
         else Close();
