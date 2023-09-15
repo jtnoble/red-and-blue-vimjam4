@@ -9,6 +9,10 @@ public class SceneManagerInputs : MonoBehaviour
     {
         if (context.performed)
         {
+            if (Time.timeScale != 1)
+            {
+                Time.timeScale = 1;
+            }
             SceneLoadAndManage.ReloadScene();
         }
     }

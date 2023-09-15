@@ -632,7 +632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6402520651890849055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: -8.5, z: 0}
+  m_LocalPosition: {x: -15, y: -8.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -750,6 +750,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ea80ca45-0700-4524-8d57-6c98863dbf6a
     m_ActionName: Movement/LoadCheckpoint[/Keyboard/rightBracket]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 97bd8759-d1b0-48f5-aa29-563d1588d165
+    m_ActionName: Movement/ResetLevel[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 443ece8e-3c7e-46b2-aae5-da2b8042dc15
+    m_ActionName: Movement/PauseGame[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement

@@ -71,6 +71,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Value"",
+                    ""id"": ""443ece8e-3c7e-46b2-aae5-da2b8042dc15"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""ResetLevel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b7b9919-5c69-47d4-8cf7-77664c806a10"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -185,6 +205,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Movement_SaveCheckpoint = m_Movement.FindAction("SaveCheckpoint", throwIfNotFound: true);
         m_Movement_LoadCheckpoint = m_Movement.FindAction("LoadCheckpoint", throwIfNotFound: true);
         m_Movement_ResetLevel = m_Movement.FindAction("ResetLevel", throwIfNotFound: true);
+        m_Movement_PauseGame = m_Movement.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -249,6 +270,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_SaveCheckpoint;
     private readonly InputAction m_Movement_LoadCheckpoint;
     private readonly InputAction m_Movement_ResetLevel;
+    private readonly InputAction m_Movement_PauseGame;
     public struct MovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -258,6 +280,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @SaveCheckpoint => m_Wrapper.m_Movement_SaveCheckpoint;
         public InputAction @LoadCheckpoint => m_Wrapper.m_Movement_LoadCheckpoint;
         public InputAction @ResetLevel => m_Wrapper.m_Movement_ResetLevel;
+        public InputAction @PauseGame => m_Wrapper.m_Movement_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -282,6 +305,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ResetLevel.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
                 @ResetLevel.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
                 @ResetLevel.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnResetLevel;
+                @PauseGame.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -301,6 +327,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @ResetLevel.started += instance.OnResetLevel;
                 @ResetLevel.performed += instance.OnResetLevel;
                 @ResetLevel.canceled += instance.OnResetLevel;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -312,5 +341,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnSaveCheckpoint(InputAction.CallbackContext context);
         void OnLoadCheckpoint(InputAction.CallbackContext context);
         void OnResetLevel(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

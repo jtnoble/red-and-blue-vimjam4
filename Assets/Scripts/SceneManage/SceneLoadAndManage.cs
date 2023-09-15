@@ -18,7 +18,7 @@ public class SceneLoadAndManage : MonoBehaviour
 
     public static void LoadNextScene()
     {
-        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex) 
+        if (SceneManager.GetActiveScene().buildIndex <= SceneManager.sceneCountInBuildSettings) 
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
