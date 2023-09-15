@@ -15,4 +15,21 @@ public class SceneLoadAndManage : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public static void LoadNextScene()
+    {
+        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex) 
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else 
+        {
+            LoadMainMenu();
+        }
+    }
+
+    public static void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

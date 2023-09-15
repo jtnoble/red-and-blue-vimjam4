@@ -6,8 +6,14 @@ public class LevelCompletionProgression : MonoBehaviour
 {
     public CompletionBall completionBall1;
     public CompletionBall completionBall2;
+    public GameObject levelCompleteUI;
 
     private bool hasFinished = false;
+
+    private void Start()
+    {
+        levelCompleteUI.SetActive(false);
+    }
     private void Update()
     {
         if (completionBall1.hasFinished && completionBall2.hasFinished && !hasFinished)
@@ -19,6 +25,6 @@ public class LevelCompletionProgression : MonoBehaviour
 
     private void FinishLevel()
     {
-        Debug.Log("Finished Level!");
+        levelCompleteUI.SetActive(true);
     }
 }
