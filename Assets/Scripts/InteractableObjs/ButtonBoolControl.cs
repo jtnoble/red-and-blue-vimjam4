@@ -8,12 +8,14 @@ public class ButtonBoolControl : MonoBehaviour
     [SerializeField] private bool isToggle = false;
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     public Sprite spriteUntoggled;
     public Sprite spriteToggled;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -26,6 +28,7 @@ public class ButtonBoolControl : MonoBehaviour
                 openDoor.isOpen = !openDoor.isOpen;
             }
             spriteRenderer.sprite = spriteToggled;
+            audioSource.Play();
         }
     }
 

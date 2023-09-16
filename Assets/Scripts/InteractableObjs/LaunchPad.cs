@@ -8,10 +8,12 @@ public class LaunchPad : MonoBehaviour
 
     private bool canLaunch = true;
     private Animator anim;
+    private AudioSource audioSource;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,6 +23,7 @@ public class LaunchPad : MonoBehaviour
             Debug.Log("Trigger LaunchPad");
             Rigidbody2D playerRb = collision.GetComponent<Rigidbody2D>();
             playerRb.AddForce(Vector2.up * launchForce);
+            audioSource.Play();
             StartCoroutine(Delay());
         }
     }

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasFinished: 0
+  newSprite: {fileID: 21300000, guid: e4ad832688cc9434c8d0c8673e6b9c1a, type: 3}
 --- !u!58 &4946066357997726116
 CircleCollider2D:
   m_ObjectHideFlags: 0

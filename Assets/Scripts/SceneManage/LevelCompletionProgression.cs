@@ -15,7 +15,7 @@ public class LevelCompletionProgression : MonoBehaviour
     {
         levelCompleteUI.SetActive(false);
         audioSource = GetComponent<AudioSource>();
-        MusicPersist.levelStarted = true;
+
     }
     private void Update()
     {
@@ -29,7 +29,6 @@ public class LevelCompletionProgression : MonoBehaviour
     private void FinishLevel()
     {
         levelCompleteUI.SetActive(true);
-        StartCoroutine(MusicPersist.EndLevel());
         audioSource.Play();
     }
 }

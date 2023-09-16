@@ -11,6 +11,8 @@ public class CheckpointControl : MonoBehaviour
     public Rigidbody2D rb2d;
     public Collider2D collider2d;
 
+    public AudioSource[] audioSource;
+
     [SerializeField] private float teleportSpeed = 1f;
 
     private Vector2 savedVelocity;
@@ -60,6 +62,7 @@ public class CheckpointControl : MonoBehaviour
         }
         hasCheckpoint = true;
         playerIndicator.transform.position = transform.position;
+        audioSource[0].Play();
 
         //transform.position = startPos.position;
         collider2d.enabled = false;
@@ -79,6 +82,7 @@ public class CheckpointControl : MonoBehaviour
             Debug.Log("No checkpoint!");
             return;
         }
+        audioSource[1].Play();
         // transform.position = playerIndicator.transform.position;
         collider2d.enabled = false;
         rb2d.isKinematic = true;
