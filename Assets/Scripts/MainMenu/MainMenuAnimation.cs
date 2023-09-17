@@ -9,11 +9,9 @@ public class MainMenuAnimation : MonoBehaviour
 
     // Movement Fields
     private Vector2 movement;
-    private bool isJumping;
 
     // Serialized Fields
     [SerializeField] private float moveSpeed = 200f;
-    [SerializeField] private float jumpForce = 0f;
 
     private void Start()
     {

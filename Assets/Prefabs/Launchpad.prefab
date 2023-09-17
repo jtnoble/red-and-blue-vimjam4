@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launchForce: 50000
+  cooldownTime: 0.25
 --- !u!82 &7042229520497885240
 AudioSource:
   m_ObjectHideFlags: 0

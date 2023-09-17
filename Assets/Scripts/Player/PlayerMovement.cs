@@ -11,11 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
     // Movement Fields
     private Vector2 movement;
-    private bool isJumping;
 
     // Serialized Fields
     [SerializeField] private float moveSpeed = 0f;
-    [SerializeField] private float jumpForce = 0f;
 
     private void Start()
     {
@@ -37,26 +35,8 @@ public class PlayerMovement : MonoBehaviour
         rb2d.AddForce(movement * moveSpeed);
     }
 
-    private void Jump()
-    {
-        Debug.Log("jump");
-        rb2d.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-    }
 
     public void OnMove(InputAction.CallbackContext context) {
         movement.x = context.ReadValue<Vector2>().x;
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isJumping = true;
-            Jump();
-        }
-        else if (context.canceled)
-        {
-            isJumping = false;
-        }
     }
 }

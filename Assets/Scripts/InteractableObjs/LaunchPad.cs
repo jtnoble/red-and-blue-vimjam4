@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaunchPad : MonoBehaviour
 {
     [SerializeField] private float launchForce = 1f;
+    [SerializeField] private float cooldownTime = 1f;
 
     private bool canLaunch = true;
     private Animator anim;
@@ -32,7 +33,7 @@ public class LaunchPad : MonoBehaviour
     {
         anim.SetTrigger("Launch");
         canLaunch = false;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(cooldownTime);
         anim.SetTrigger("Return");
         canLaunch = true;
     }
